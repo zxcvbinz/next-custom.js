@@ -17,9 +17,9 @@ function getCssModuleLocalIdent(context, _, exportName, options) {
     // file `index.module.css`.
     const fileNameOrFolder = regexLikeIndexModule.test(relativePath) ? "[folder]" : "[name]";
     // Generate a hash to make the class name unique.
-    const hash = _loaderUtils3.default.getHashDigest(Buffer.from(`filePath:${relativePath}#className:${exportName}`), "md5", "base64", 5);
+    const hash = _loaderUtils3.default.getHashDigest(Buffer.from(`filePath:${relativePath}#className:${exportName}`), "md5", "base64", 15);
     // Have webpack interpolate the `[folder]` or `[name]` to its real value.
-    return _loaderUtils3.default.interpolateName(context, fileNameOrFolder + "_" + exportName + "__" + hash, options).replace(// Webpack name interpolation returns `about.module_root__2oFM9` for
+    return _loaderUtils3.default.interpolateName(context, hash, options).replace(// Webpack name interpolation returns `about.module_root__2oFM9` for
     // `.root {}` inside a file named `about.module.css`. Let's simplify
     // this.
     /\.module_/, "_")// Replace invalid symbols with underscores instead of escaping
